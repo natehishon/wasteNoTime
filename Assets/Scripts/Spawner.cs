@@ -11,6 +11,8 @@ public class Spawner : MonoBehaviour
     public float decreaseTime;
     public float minTime = 0.65f;
 
+    [SerializeField] float health = 100;
+
     private void Update()
     {
         if (timeBtwSpawn <= 0)

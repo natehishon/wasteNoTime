@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public int damage = 1;
+    [SerializeField] int health = 100;
     public float speed;
 
     public GameObject effect;
@@ -24,5 +25,17 @@ public class Obstacle : MonoBehaviour
             Debug.Log(other.GetComponent<Player>().health);
             Destroy(gameObject);
         }
+        else
+        {
+            DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+            health -= damageDealer.GetDamage();
+            if (health <= 0)
+            {
+                Instantiate(effect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
+
+
     }
 }
